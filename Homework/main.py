@@ -15,3 +15,5 @@ number = float(str_)
 number = number * 10
 int_ = int(number) % 10
 print(int_)
+
+print(int(float(str_) * 10) % 10)
