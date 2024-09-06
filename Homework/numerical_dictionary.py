@@ -45,9 +45,8 @@ numerical_dictionary ={
 # Запрос трёхзначного числа
 number = input('Введите трёхзначное число: ')
 
-# Преобразование введённого числа для удобной манипуляции над его элементами
-list_numbers = []
-list_numbers.extend(str(number))
-
 # Вывод результата
-print(numerical_dictionary[(int(list_numbers[0]) * 100)], numerical_dictionary[(int(list_numbers[1]) * 10)].lower(), numerical_dictionary[(int(list_numbers[2]))].lower())
+if int(number[1]) == 1:
+    print(numerical_dictionary[(int(number[0]) * 100)], numerical_dictionary[(int(number[1:]))].lower())
+else:
+    print(numerical_dictionary[(int(number[0]) * 100)], numerical_dictionary[(int(number[1]) * 10)].lower(), numerical_dictionary[(int(number[2]))].lower())
