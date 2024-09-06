@@ -3,7 +3,7 @@
 
 # Воодные данные
 numerical_dictionary ={
-    0: '',
+    0: 'Ноль',
     1: 'Один',
     2: 'Два',
     3: 'Три',
@@ -45,8 +45,15 @@ numerical_dictionary ={
 # Запрос трёхзначного числа
 number = input('Введите трёхзначное число: ')
 
-# Вывод результата
-if int(number[1]) == 1:
-    print(numerical_dictionary[(int(number[0]) * 100)], numerical_dictionary[(int(number[1:]))].lower())
+if len(number) == 1:
+    print(numerical_dictionary[int(number)])
+elif len(number) == 2:
+    if int(number[0]) == 1:
+        print(numerical_dictionary[(int(number[0:]))])
+    else:
+        print(numerical_dictionary[(int(number[0]) * 10)], numerical_dictionary[(int(number[1]))].lower())
 else:
-    print(numerical_dictionary[(int(number[0]) * 100)], numerical_dictionary[(int(number[1]) * 10)].lower(), numerical_dictionary[(int(number[2]))].lower())
+    if int(number[1]) == 1:
+        print(numerical_dictionary[(int(number[0]) * 100)], numerical_dictionary[(int(number[1:]))].lower())
+    else:
+        print(numerical_dictionary[(int(number[0]) * 100)], numerical_dictionary[(int(number[1]) * 10)].lower(), numerical_dictionary[(int(number[2]))].lower())
