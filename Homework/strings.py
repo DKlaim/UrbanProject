@@ -1,7 +1,7 @@
-example = 'Топинамбур'
+eXample = 'Топинамбур'
 
-print(example[0])
-print(example[-1])
-print(example[5:])
-print(example[::-1])
-print(example[1::2])
+print(eXample[0])
+print(eXample[-1])
+print(eXample[5:])
+print(eXample[::-1])
+print(eXample[1::2])
