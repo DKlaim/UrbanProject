@@ -13,7 +13,7 @@ def numeric_list():
 first_window = random.choice(numeric_list()[2:])
 
 
-# Получаем пары да случайного числа
+# Получаем пары для случайного числа
 def couples(first_win, num_set):
     couples_ = ''
     n = 0
