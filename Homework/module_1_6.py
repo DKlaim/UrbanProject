@@ -1,11 +1,11 @@
 my_dict = {
-    'Alex': 2000,
+    'AleX': 2000,
     'Sasha': 2005,
-    'Max': 2010
+    'MaX': 2010
 }
 print('Dict:', my_dict)
-print('Existing value:', my_dict['Alex'])
-print('Not existing value:', my_dict.get('Denis'))
+print('EXisting value:', my_dict['AleX'])
+print('Not eXisting value:', my_dict.get('Denis'))
 
 my_dict.update({
     'Denis': 2001,
