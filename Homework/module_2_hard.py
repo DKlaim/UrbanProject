@@ -1,7 +1,7 @@
 import random
 
 # Дано
-random_number = random.randint(3, 21)
+random_number = random.randint(3, 20)
 
 
 # Делаем выборку всех возможных пар чисел для любого числа больше 2
