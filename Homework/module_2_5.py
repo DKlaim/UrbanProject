@@ -1,14 +1,14 @@
-def get_matriX(n, m, value):
-    matriX = []
+def get_matrix(n, m, value):
+    matrix = []  # создали пустой список
     for i in range(n):
-        matriX.append([])
-        for j in range(m):
-            matriX[i].append(value)
-    return matriX
+        matrix.append([])  # добавили в пустой список n пустых списков
+        for _ in range(m):
+            matrix[i].append(value)  # в каждый из n списков добавили value m раз
+    return matrix
 
-result1 = get_matriX(2, 2, 10)
-result2 = get_matriX(3, 5, 42)
-result3 = get_matriX(4, 2, 13)
+result1 = get_matrix(2, 2, 10)
+result2 = get_matrix(3, 5, 42)
+result3 = get_matrix(4, 2, 13)
 
 print(result1)
 print(result2)
