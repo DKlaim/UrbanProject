@@ -1,6 +1,6 @@
 # Подключение стороннего модуля
-import module3 as m3  # локальное переименование импортируемого модуля
-
+from Lessons_4.mod_packs import module3 as m3
+from mod_packs.modules import some_func as sf
 
 print('Ответ модуля 1')
 
@@ -12,7 +12,7 @@ m3.say_hi()
 
 
 # Глобальное импортирование элементов стороннего модуля
-from module3 import *  # можно импортировать как отдельные элементы, так и все с помощью *
+from Lessons_4.mod_packs.module3 import *  # можно импортировать как отдельные элементы, так и все с помощью *
 
 
 print('Ответ модуля 2')
@@ -22,3 +22,6 @@ print('Ответ модуля 2')
 print(a)
 print(b)
 say_hi()
+print()
+
+print(sf())
