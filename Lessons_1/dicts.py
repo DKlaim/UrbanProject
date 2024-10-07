@@ -28,7 +28,7 @@ phone_book.update({
 print(phone_book)
 print()
 
-print(phone_book.get('MaX')) # метод вывода значения по ключю
+print(phone_book.get('MaX')) # метод вывода значения по ключу
 print()
 
 print(phone_book.get('Neo')) # если ключа нет, то выведет None
