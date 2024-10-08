@@ -1,4 +1,4 @@
-from SortFunc.sotrfunc import insertion_sort, bubble_sort, selection_sort
+from SortFunc.sort_func import insertion_sort, bubble_sort, selection_sort
 
 data_1 = [9, 5, 6, 4, 8, 7, 3, 2, 1]
 data_2 = ['q', 'w', 'e', 'r', 't', 'a', 's', 'd', 'f', 'g', 'b', 'v', 'c', 'x', 'z']
