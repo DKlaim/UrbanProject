@@ -20,5 +20,5 @@ class User:
 
 if __name__ == '__main__':
     database = Database()
-    user = User(int('Придумайте логин: '), int('Придумайте пароль: '), int('Повторите ввод пароля для проверки: '))
+    user = User(input('Придумайте логин: '), input('Придумайте пароль: '), input('Повторите ввод пароля для проверки: '))
     database.add_user(user.username, user.password)
