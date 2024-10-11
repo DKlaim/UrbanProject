@@ -20,5 +20,14 @@ class User:
 
 if __name__ == '__main__':
     database = Database()
-    user = User(input('Придумайте логин: '), input('Придумайте пароль: '), input('Повторите ввод пароля для проверки: '))
-    database.add_user(user.username, user.password)
+    while True:
+        user = User(input('Придумайте логин: '), password := input('Придумайте пароль: '),
+                    password_confirm := input('Повторите ввод пароля для проверки: '))
+        if password != password_confirm:
+            print('Ошибка при повторном вводе пароля! Попробуйте ещё раз.')
+            continue
+        else:
+            database.add_user(user.username, user.password)
+            print(f'Пользователь {user.username} успешно создан.')
+            print(database.data)
+            break
