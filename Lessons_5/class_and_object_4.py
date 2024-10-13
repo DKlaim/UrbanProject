@@ -1,6 +1,3 @@
-from cgi import print_directory
-
-
 class Human:
     def __init__(self, name, age):
         self.name = name
