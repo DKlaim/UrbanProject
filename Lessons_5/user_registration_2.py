@@ -17,8 +17,9 @@ class User:
         if password == password_confirm:
             self.password = password
 
-    def registration(*self):
-        print('Регистрация пользователя:')
+    @staticmethod
+    def registration():
+        print('Регистрация пользователя')
         while True:
             user = User(input('Придумайте логин: '), password := input('Придумайте пароль: '),
                         password_confirm := input('Для подтверждения повторите ввод пароля: '))
@@ -33,13 +34,13 @@ class User:
                 print()
                 break
 
-    def authorization(database):
+    def authorization(self):
         print('Авторизация пользователя:')
         while True:
             username = input('Введите логин: ')
-            if username and username in database:
+            if username and username in self:
                 password = input('Введите пароль: ')
-                if password == database[username]:
+                if password == self[username]:
                     print()
                     print(f'Авторизация пользователя {username} успешно выполнена.')
                     break
