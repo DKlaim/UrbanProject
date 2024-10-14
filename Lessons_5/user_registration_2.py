@@ -38,7 +38,7 @@ class User:
         print('Авторизация пользователя:')
         while True:
             username = input('Введите логин: ')
-            if username != ' ' and username in database:
+            if username and username in database:
                 password = input('Введите пароль: ')
                 if password == database[username]:
                     print()
@@ -48,11 +48,11 @@ class User:
                     print()
                     print('Неверный пароль! Попробуйте ещё раз.')
                     continue
-            elif username == ' ':
+            elif username == '':
                 break
             else:
                 print()
-                print(f'Пользователь {username} не найден. Попробуйте ещё раз или введите пробел для выхода.')
+                print(f'Пользователь {username} не найден. Попробуйте ещё раз или нажмите "Enter" для выхода.')
                 continue
 
 
