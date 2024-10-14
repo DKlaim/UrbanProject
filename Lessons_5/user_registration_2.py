@@ -30,7 +30,6 @@ class User:
                 database.add_user(user.username, user.password)
                 print()
                 print(f'Пользователь {user.username} успешно создан.')
-                print(database.data)
                 print()
                 break
 
