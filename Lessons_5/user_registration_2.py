@@ -22,40 +22,64 @@ class User:
 
     @staticmethod
     def registration():
+
+        def answer_for_emptiness():
+            print('----------------------------------------------')
+            print('Поле не может быть пустым! Попробуйте ещё раз.')
+            print('----------------------------------------------')
+
         print('Регистрация пользователя')
         while True:
-            user = User(input('Придумайте логин: '), password := input('Придумайте пароль: '),
-                        password_confirm := input('Для подтверждения повторите ввод пароля: '))
-            if password != password_confirm:
-                print()
-                print('Ошибка при повторном введении пароля! Попробуйте ещё раз.')
-                continue
+            login = input('Придумайте логин: ')
+            if login:
+                password = input('Придумайте пароль: ')
+                if password:
+                    password_confirm = input('Для подтверждения повторите ввод пароля: ')
+                    if password_confirm:
+                        if password == password_confirm:
+                            user = User(login, password, password_confirm)
+                            database.add_user(user.username, user.password)
+                            print('----------------------------------------------')
+                            print(f'Пользователь {user.username} успешно создан.')
+                            print('----------------------------------------------')
+                            break
+                        else:
+                            print('---------------------------------------------------------')
+                            print('Ошибка при повторном введении пароля! Попробуйте ещё раз.')
+                            print('---------------------------------------------------------')
+                            continue
+                    else:
+                        answer_for_emptiness()
+                        continue
+                else:
+                    answer_for_emptiness()
+                    continue
             else:
-                database.add_user(user.username, user.password)
-                print()
-                print(f'Пользователь {user.username} успешно создан.')
-                print()
-                break
+                answer_for_emptiness()
+                continue
 
     def authorization(self):
-        print('Авторизация пользователя:')
+        print('Авторизация пользователя')
         while True:
             username = input('Введите логин: ')
             if username and username in self.data:
                 password = input('Введите пароль: ')
                 if password == self.data[username]:
-                    print()
+                    print('----------------------------------------------')
                     print(f'Авторизация пользователя {username} успешно выполнена.')
+                    print('----------------------------------------------')
                     break
                 else:
-                    print()
+                    print('----------------------------------------------')
                     print('Неверный пароль! Попробуйте ещё раз.')
+                    print('----------------------------------------------')
                     continue
             elif username == '':
                 break
             else:
-                print()
-                print(f'Пользователь {username} не найден. Попробуйте ещё раз или нажмите "Enter" для выхода.')
+                print('--------------------------------------------------')
+                print(f'Пользователь {username} не найден.\nПопробуйте ещё раз или нажмите "Enter" для выхода.')
+                print('--------------------------------------------------')
                 continue
 
 
