@@ -17,6 +17,9 @@ class User:
         if password == password_confirm:
             self.password = password
 
+    def __getitem__(self, data):
+        self.data = data
+
     @staticmethod
     def registration():
         print('Регистрация пользователя')
@@ -38,9 +41,9 @@ class User:
         print('Авторизация пользователя:')
         while True:
             username = input('Введите логин: ')
-            if username and username in self:
+            if username and username in self.data:
                 password = input('Введите пароль: ')
-                if password == self[username]:
+                if password == self.data[username]:
                     print()
                     print(f'Авторизация пользователя {username} успешно выполнена.')
                     break
@@ -59,4 +62,4 @@ class User:
 if __name__ == '__main__':
     database = Database()
     User.registration()
-    User.authorization(database.data)
+    User.authorization(database)
