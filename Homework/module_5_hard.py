@@ -62,32 +62,37 @@ class User:
 
 if __name__ == '__main__':
     ur = UrTube()
+
     # user1 = User('den', 123123, 23)
     # user2 = User('max', 321123, 22)
+    #
     # print(user1)
     # print(hash(user1))
     # print(user1.age)
-    ur.register('den', 123123, 23)
+    # ur.register('den', 123123, 23)
     # print()
+    #
     # print(user2)
     # print(hash(user2))
     # print(user2.age)
-    ur.register('max', 321123, 22)
-    ur.register('den', 123123, 23)
+    # ur.register('max', 321123, 22)
     # print()
-    print(ur.users)
-    print()
-
-    v1 = Video('Лучший язык программирования 2024 года', 200)
-    v2 = Video('Для чего девушкам парень программист?', 10, adult_mode=True)
-    # print(v1)
-    # print(v2)
+    #
+    # ur.register('den', 123123, 23)
     # print()
-    # ur.add(v1, v2)
-    # print(ur.videos)
-
+    #
     # ur.register('vasya_pupkin', 'lolkekcheburek', 13)
     # print(ur.current_user)
     # print(hash(ur.current_user))
-    # ur.add(v1, v2)
-    # print(ur.videos)
+    #
+    # print(ur.users)
+    # print()
+
+    v1 = Video('Лучший язык программирования 2024 года', 200)
+    v2 = Video('Для чего девушкам парень программист?', 10, adult_mode=True)
+    print(v1)
+    print(v2)
+    print()
+
+    ur.add(v1, v2)
+    print(ur.videos)
