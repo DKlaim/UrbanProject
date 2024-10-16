@@ -29,8 +29,17 @@ class UrTube:
     def add(self, *other):
         self.videos += other
 
-    def get_videos(self):
-        pass
+    def get_videos(self, word):
+        video_list = []
+        word = word.lower
+        for video in self.users:
+            for title in video:
+                title = title.lower
+                if word in title:
+                    video_list += self.videos[0][0]
+        return video_list
+
+
 
     def watch_video(self):
         pass
@@ -45,6 +54,9 @@ class Video:
 
     def __str__(self):
         return f'{self.title}'
+
+    def __repr__(self):
+        return f'{self.title}, {self.duration})'
 
 
 class User:
@@ -96,3 +108,6 @@ if __name__ == '__main__':
 
     ur.add(v1, v2)
     print(ur.videos)
+
+    print(ur.get_videos('лучший'))
+    print(ur.get_videos('ПРОГ'))
