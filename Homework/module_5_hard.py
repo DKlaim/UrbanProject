@@ -28,21 +28,20 @@ class UrTube:
 
     def add(self, *other):
         self.videos += other
+        return self.videos
 
     def get_videos(self, word):
         video_list = []
-        word = word.lower
-        for video in self.users:
-            for title in video:
-                title = title.lower
-                if word in title:
-                    video_list += self.videos[0][0]
+        for video in self.videos:
+            if word in video:
+                video_list.append(video)
         return video_list
 
 
 
     def watch_video(self):
         pass
+
 
 
 class Video:
@@ -56,7 +55,10 @@ class Video:
         return f'{self.title}'
 
     def __repr__(self):
-        return f'{self.title}, {self.duration})'
+        return f'{self.title}'
+
+    def __contains__(self, item):
+        return item.lower() in self.title.lower()
 
 
 class User:
@@ -71,10 +73,13 @@ class User:
     def __hash__(self):
         return hash((self.nickname, self.password))
 
+    def __contains__(self, item):
+        return item in self.nickname
+
 
 if __name__ == '__main__':
-    ur = UrTube()
-
+    # ur = UrTube()
+    #
     # user1 = User('den', 123123, 23)
     # user2 = User('max', 321123, 22)
     #
@@ -99,15 +104,40 @@ if __name__ == '__main__':
     #
     # print(ur.users)
     # print()
+    #
+    # v1 = Video('Лучший язык программирования 2024 года', 200)
+    # v2 = Video('Для чего девушкам парень программист?', 10, adult_mode=True)
+    # print(v1)
+    # print(v2)
+    # print()
+    #
+    # ur.add(v1, v2)
+    # print(ur.videos)
+    #
+    # print(ur.get_videos('лучший'))
+    # print(ur.get_videos('ПРОГ'))
 
+    ur = UrTube()
     v1 = Video('Лучший язык программирования 2024 года', 200)
     v2 = Video('Для чего девушкам парень программист?', 10, adult_mode=True)
-    print(v1)
-    print(v2)
-    print()
 
+    # Добавление видео
     ur.add(v1, v2)
-    print(ur.videos)
 
+    # Проверка поиска
     print(ur.get_videos('лучший'))
     print(ur.get_videos('ПРОГ'))
+
+    # Проверка на вход пользователя и возрастное ограничение
+    #ur.watch_video('Для чего девушкам парень программист?')
+    ur.register('vasya_pupkin', 'lolkekcheburek', 13)
+    #ur.watch_video('Для чего девушкам парень программист?')
+    ur.register('urban_pythonist', 'iScX4vIJClb9YQavjAgF', 25)
+    #ur.watch_video('Для чего девушкам парень программист?')
+
+    # Проверка входа в другой аккаунт
+    ur.register('vasya_pupkin', 'F8098FM8fjm9jmi', 55)
+    print(ur.current_user)
+
+    # Попытка воспроизведения несуществующего видео
+    #ur.watch_video('Лучший язык программирования 2024 года!')
