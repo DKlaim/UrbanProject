@@ -8,11 +8,11 @@ print('Замена первого элемента:', food)
 food.append(True)
 print('Метод .append добавляет элемент в конец списка:', food)
 
-food.eXtend('string')
-print('Метод .eXtend также добавляет элементы в конец списка, но каждым новым элементом будет выступать каждый символ строки:', food)
+food.extend('string')
+print('Метод .extend также добавляет элементы в конец списка, но каждым новым элементом будет выступать каждый символ строки:', food)
 
-food.eXtend(['string',])
-print('Методом .eXtend удобно передавать списки:', food)
+food.extend(['string',])
+print('Методом .extend удобно передавать списки:', food)
 
 food.remove('banana')
 print('Метод .remove - удаление указанного элемента из списка:', food)
