@@ -24,7 +24,7 @@ class Pegasus(Horse, Eagle):
         return self.x_distance, self.y_distance
 
     def voice(self):
-        print(self.sound)
+        print(super().sound)
 
 
 if __name__ == '__main__':
