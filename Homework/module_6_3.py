@@ -19,19 +19,19 @@ class Eagle:
 class Pegasus(Horse, Eagle):
     def __init__(self):
         print('Пегас')
-        super().x_distance
-        super().y_distance
-        super().sound
+        self.x_distance = super().x_distance
+        self.y_distance = super().y_distance
+        self.sound = super().sound
 
     def move(self, dx, dy):
-        self.run(dx)
-        self.fly(dy)
+        super().run(dx)
+        super().fly(dy)
 
     def get_pos(self):
         return self.x_distance, self.y_distance
 
     def voice(self):
-        print(super().sound)
+        print(self.sound)
 
 
 if __name__ == '__main__':
