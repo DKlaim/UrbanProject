@@ -33,6 +33,11 @@ class Figure:
         if len(new_sides) == self.sides_count:
             self.__sides = list(new_sides)
 
+    def valid_sides(self, *sides):
+        if len(sides) != self.sides_count:
+            return [1] * self.sides_count
+        return sides
+
 
 class Circle(Figure):
     sides_count = 1
@@ -50,7 +55,9 @@ class Triangle(Figure):
     sides_count = 3
 
     def __init__(self, color, sides):
-        super().__init__(sides, color, filled=True)
+        if isinstance(sides, list):
+            super().__init__(sides, color, filled=True)
+        super().__init__(list(sides), color, filled=True)
 
     def get_square(self):
         a = self.get_sides()[0]
@@ -75,40 +82,41 @@ class Cube(Figure):
 
 
 if __name__ == '__main__':
-    triangle1 = Triangle((200, 200, 100), 2)
-    print(triangle1.get_color())
-    print(triangle1.get_sides())
-    print(len(triangle1))
+    circle1 = Circle((200, 200, 100), 10)  # (Цвет, стороны)
+    cube1 = Cube((222, 35, 130), 6)
 
+    # Проверка на изменение цветов:
+    circle1.set_color(55, 66, 77)  # Изменится
+    print(circle1.get_color())
+    cube1.set_color(300, 70, 15)  # Не изменится
+    print(cube1.get_color())
+
+    # Проверка на изменение сторон:
+    cube1.set_sides(5, 3, 12, 4, 5)  # Не изменится
+    print(cube1.get_sides())
+    circle1.set_sides(15)  # Изменится
+    print(circle1.get_sides())
+
+    # Проверка периметра (круга), это и есть длина:
+    print(len(circle1))
+    print(len(cube1))
+
+    # Проверка объёма (куба):
+    print(cube1.get_volume())
+
+
+
+    triangle1 = Triangle((200, 200, 100), (2, 3, 5))
+    print('Исходный цвет треугольника:', triangle1.get_color())
+    print('Исходные стороны треугольника:', triangle1.get_sides())
+    print('Периметр треугольника:', len(triangle1))
 
     triangle1.set_color(55, 66, 77)
-    print(triangle1.get_color())
+    print('Изменённый цвет треугольника:', triangle1.get_color())
 
     triangle1.set_sides(5, 3, 12, 4, 5)
-    print(triangle1.get_sides())
+    print('Некорректное изменение сторон треугольника:', triangle1.get_sides())
 
     triangle1.set_sides(12, 13, 14)
-    print(triangle1.get_sides())
-
-
-
-    # circle1 = Circle((200, 200, 100), 10)  # (Цвет, стороны)
-    # cube1 = Cube((222, 35, 130), 6)
-    #
-    # # Проверка на изменение цветов:
-    # circle1.set_color(55, 66, 77)  # Изменится
-    # print(circle1.get_color())
-    # cube1.set_color(300, 70, 15)  # Не изменится
-    # print(cube1.get_color())
-    #
-    # # Проверка на изменение сторон:
-    # cube1.set_sides(5, 3, 12, 4, 5)  # Не изменится
-    # print(cube1.get_sides())
-    # circle1.set_sides(15)  # Изменится
-    # print(circle1.get_sides())
-    #
-    # # Проверка периметра (круга), это и есть длина:
-    # print(len(circle1))
-    #
-    # # Проверка объёма (куба):
-    # print(cube1.get_volume())
+    print('Изменённые стороны треугольника:', triangle1.get_sides())
+    print('Периметр треугольника:', len(triangle1))
