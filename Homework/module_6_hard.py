@@ -42,10 +42,15 @@ class Figure:
 class Circle(Figure):
     sides_count = 1
 
-    def __init__(self, color, side):
+    def __init__(self, color, *side):
         from math import pi
-        self.__radius = side / (2 * pi)
-        super().__init__(side, color, filled=True)
+        if len(side) > 1:
+            side = [1]
+            self.__radius = side[0] / (2 * pi)
+            super().__init__(side, color, filled=True)
+        else:
+            self.__radius = list(side)[0] / (2 * pi)
+            super().__init__(list(side), color, filled=True)
 
     def get_square(self):
         return __import__('math').pi * self.__radius ** 2
@@ -54,8 +59,9 @@ class Circle(Figure):
 class Triangle(Figure):
     sides_count = 3
 
-    def __init__(self, color, sides):
-        if isinstance(sides, list):
+    def __init__(self, color, *sides):
+        if len(sides) != self.sides_count:
+            sides = [1] * self.sides_count
             super().__init__(sides, color, filled=True)
         super().__init__(list(sides), color, filled=True)
 
@@ -72,10 +78,15 @@ class Triangle(Figure):
 class Cube(Figure):
     sides_count = 12
 
-    def __init__(self, color, side):
-        self.side = side
-        sides = [side] * self.sides_count
-        super().__init__(sides, color, filled=True)
+    def __init__(self, color, *side):
+        if len(side) > 1:
+            self.side = 1
+            sides = [1] * self.sides_count
+            super().__init__(sides, color, filled=True)
+        else:
+            self.side = list(side)[0]
+            sides = side * self.sides_count
+            super().__init__(list(sides), color, filled=True)
 
     def get_volume(self):
         return self.side ** 3
@@ -99,14 +110,11 @@ if __name__ == '__main__':
 
     # Проверка периметра (круга), это и есть длина:
     print(len(circle1))
-    print(len(cube1))
 
     # Проверка объёма (куба):
     print(cube1.get_volume())
 
-
-
-    triangle1 = Triangle((200, 200, 100), (2, 3, 5))
+    triangle1 = Triangle((200, 200, 100), 2, 3, 5)
     print('Исходный цвет треугольника:', triangle1.get_color())
     print('Исходные стороны треугольника:', triangle1.get_sides())
     print('Периметр треугольника:', len(triangle1))
