@@ -4,7 +4,7 @@ file_name = 'package.txt'
 
 # Режимы работы с файлами: r - чтение, w - запись, a - добавление
 # Открытие файла для чтения
-file = open(file_name, 'r')
+file = open(file_name, 'r')  # или file = open(file_name).read()
 
 print(file)
 # Для вывода содержимого файла на экран необходимо использовать конструкцию чтения:
