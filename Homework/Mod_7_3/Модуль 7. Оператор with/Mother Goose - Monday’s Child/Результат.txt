@@ -1,0 +1,14 @@
+Поисковое слово: 'child'
+
+Код:
+
+finder1 = WordsFinder('Mother Goose - Monday’s Child.txt',)
+print(finder1.get_all_words())
+print(finder1.find('Child'))
+print(finder1.count('Child'))
+
+Результат:
+
+{'Mother Goose - Monday’s Child.txt': ['monday’s', 'child', 'monday’s', 'child', 'is', 'fair', 'of', 'face', 'tuesday’s', 'child', 'is', 'full', 'of', 'grace', 'wednesday’s', 'child', 'is', 'full', 'of', 'woe', 'thursday’s', 'child', 'has', 'far', 'to', 'go', 'friday’s', 'child', 'is', 'loving', 'and', 'giving', 'saturday’s', 'child', 'works', 'hard', 'for', 'a', 'living', 'and', 'the', 'child', 'that', 'is', 'born', 'on', 'the', 'sabbath', 'day', 'is', 'bonny', 'and', 'blithe', 'and', 'good', 'and', 'gay', 'mother', 'goose']}
+{'Mother Goose - Monday’s Child.txt': 2}
+{'Mother Goose - Monday’s Child.txt': 8}
