@@ -1,6 +1,4 @@
 import os
-from base64 import decode
-from quopri import decodestring
 
 print('Текущая директория:', os.getcwd())
 
