@@ -10,27 +10,24 @@ class Iterator:
         self.stop = stop
         self.step = step
         self.pointer = self.start
-        # self.i = 0
 
     def __iter__(self):
         self.pointer = self.start
         return self
 
     def __next__(self):
-        # if self.i < 1:
-        #     self.i += 1
-        #     return self.pointer
+        current = self.pointer  # сохраняем поинтер
+        self.pointer += self.step  # увеличиваем поинтер
 
-        self.pointer += self.step
         if self.step < 0:
-            if self.pointer < self.stop:
+            if self.pointer < self.stop - 1:
                 raise StopIteration()
 
         if self.step > 0:
-            if self.pointer > self.stop:
+            if self.pointer > self.stop + 1:
                 raise StopIteration()
 
-        return self.pointer
+        return current  # возвращаем current
 
 
 if __name__ == '__main__':
