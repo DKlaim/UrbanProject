@@ -10,14 +10,18 @@ class Iterator:
         self.stop = stop
         self.step = step
         self.pointer = self.start
+        # self.i = 0
 
     def __iter__(self):
         self.pointer = self.start
         return self
 
     def __next__(self):
-        self.pointer += self.step
+        # if self.i < 1:
+        #     self.i += 1
+        #     return self.pointer
 
+        self.pointer += self.step
         if self.step < 0:
             if self.pointer < self.stop:
                 raise StopIteration()
@@ -30,12 +34,12 @@ class Iterator:
 
 
 if __name__ == '__main__':
-    # try:
-    #     iter1 = Iterator(100, 200, 0)
-    #     for i in iter1:
-    #         print(i, end=' ')
-    # except StepValueError:
-    #     print('Шаг указан неверно')
+    try:
+        iter1 = Iterator(100, 200, 0)
+        for i in iter1:
+            print(i, end=' ')
+    except StepValueError:
+        print('Шаг указан неверно')
 
     iter2 = Iterator(-5, 1)
     iter3 = Iterator(6, 15, 2)
