@@ -1,6 +1,5 @@
 def all_variants(text):
-    i = 1
-    j = 1
+    i = j = 1
     for n in range(1, len(text) + 1):
         while i != len(text) + 1:
             yield text[i - n:i]
