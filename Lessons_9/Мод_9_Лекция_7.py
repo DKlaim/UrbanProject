@@ -76,11 +76,11 @@ def time_track(func):
 def digits(*args):
     total = 1
     for number in args:
-        total = number ** 5000
+        total += number ** 5000
     return len(str(total))
 
 
-sys.set_int_max_str_digits(100000)
+sys.set_int_max_str_digits(10**5)
 
 result = digits(3141, 5926, 2718, 2818)
 print(result)
