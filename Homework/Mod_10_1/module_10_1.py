@@ -28,6 +28,7 @@ flow_4 = threading.Thread(target=write_words, args=(100, 'example8.txt'))
 
 start = time()
 flow_1.start()
+flow_1.join()
 flow_2.start()
 flow_3.start()
 flow_4.start()
