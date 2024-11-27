@@ -6,9 +6,8 @@ def write_words(word_count, file_name):
     with open(file_name, 'w', encoding='utf-8') as file:
         for n in range(1, word_count + 1):
             file.write(f'Какое-то слово № {n}\n')
-
+            sleep(0.1)
     print(f'Завершилась запись в файл {file_name}')
-    sleep(0.1)
 
 
 start = time()
@@ -28,10 +27,13 @@ flow_4 = threading.Thread(target=write_words, args=(100, 'example8.txt'))
 
 start = time()
 flow_1.start()
-flow_1.join()
 flow_2.start()
 flow_3.start()
 flow_4.start()
+flow_1.join()
+flow_2.join()
+flow_3.join()
+flow_4.join()
 fin = time()
 
 elapsed = round(fin - start, 4)
