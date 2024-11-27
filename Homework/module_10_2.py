@@ -33,4 +33,3 @@ second_knight.join()
 
 if not first_knight.is_alive() and not second_knight.is_alive():
     print('Все битвы закончились!')
-
