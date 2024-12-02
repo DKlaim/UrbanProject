@@ -5,9 +5,9 @@ from queue import Queue
 
 
 class Table:
-    def __init__(self, number):
+    def __init__(self, number, guest=None):
         self.number = number
-        self.guest = None
+        self.guest = guest
 
 
 class Guest(threading.Thread):
@@ -25,11 +25,17 @@ class Cafe:
         self.tables = tables
 
     def guest_arrival(self, *guests):
-        # for guest in guests:
-        #     print(guest)
-        table = self.queue.get()
         for guest in guests:
-            print(f'{guest} сел(-а) за стол номер {table}')
+            for table in self.tables:
+                if table.guest:
+                    self.queue.put(guest)
+                    print(f'{guest.name} в очереди')
+                    break
+                else:
+                    table.guest = guest.name
+                    Guest(guest.name).start()
+                    print(f'{guest.name} сел(-а) за стол номер {table.number}')
+                    break
 
     def discuss_guests(self):
         pass
