@@ -1,6 +1,6 @@
 import threading
 from random import randint
-from time import sleep
+from time import sleep, process_time_ns
 from queue import Queue
 
 
@@ -25,20 +25,26 @@ class Cafe:
         self.tables = tables
 
     def guest_arrival(self, *guests):
+        n = 0
         for guest in guests:
-            for table in self.tables:
-                if table.guest:
-                    self.queue.put(guest)
-                    print(f'{guest.name} в очереди')
-                    break
-                else:
-                    table.guest = guest.name
-                    Guest(guest.name).start()
-                    print(f'{guest.name} сел(-а) за стол номер {table.number}')
-                    break
+            if n == len(self.tables) or self.tables[n].guest:
+                self.queue.put(guest.name)
+                print(f'{guest.name} в очереди')
+            else:
+                self.tables[n].guest = guest.name
+                thread = Guest(guest.name)
+                thread.start()
+                thread.join()
+                print(f'Поток {thread.is_alive()}')
+                print(f'{guest.name} сел(-а) за стол номер {self.tables[n].number} - {threading.current_thread()}')
+                n += 1
 
     def discuss_guests(self):
-        pass
+        if self.queue.empty() or None in [table.guest for table in self.tables]:
+            print(self.queue.empty(), 'None')
+        else:
+            for table in self.tables:
+                print(table.number, table.guest)
 
 
 if __name__ == '__main__':
@@ -56,4 +62,4 @@ if __name__ == '__main__':
     # Приём гостей
     cafe.guest_arrival(*guests)
     # # Обслуживание гостей
-    # cafe.discuss_guests()
+    cafe.discuss_guests()
