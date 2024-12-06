@@ -25,19 +25,21 @@ class Cafe:
         self.tables = tables
 
     def guest_arrival(self, *guests):
-        n = 0
         for guest in guests:
-            if n == len(self.tables) or self.tables[n].guest:
-                self.queue.put(guest.name)
-                print(f'{guest.name} в очереди')
-            else:
-                self.tables[n].guest = guest.name
-                thread = Guest(guest.name)
-                thread.start()
-                thread.join()
-                print(f'Поток {thread.is_alive()}')
-                print(f'{guest.name} сел(-а) за стол номер {self.tables[n].number} - {threading.current_thread()}')
-                n += 1
+            # while None in [table.guest for table in self.tables]:
+            for n in range(len(self.tables)):
+                if self.tables[n].guest is None or guest.name != self.tables[n].guest:
+                    self.tables[n].guest = guest.name
+                    thread = Guest(guest.name)
+                    print(f'{guest.name} сел(-а) за стол номер {self.tables[n].guest} - {threading.current_thread()}')
+                    thread.start()
+                    # thread.join()
+                    break
+                elif guest.name == self.tables[n].guest:
+                    continue
+                else:
+                    self.queue.put(guest.name)
+                    print(f'{guest.name} в очереди')
 
     def discuss_guests(self):
         if self.queue.empty() or None in [table.guest for table in self.tables]:
