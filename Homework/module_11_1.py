@@ -18,7 +18,7 @@ def get_data(html):
     parse = BeautifulSoup(html, 'html.parser')
     securities = []
 
-    for i in range(1, 8):
+    for i in range(1, 9):
         items = parse.find_all('td', class_="cc" + f'{i}')
         for item in items:
             securities.append(
