@@ -18,36 +18,27 @@ def get_data(html):
     parse = BeautifulSoup(html, 'html.parser')
     securities = []
 
-    # items = parse.find_all('div', class_="tabs")
-    # items = parse.find_all('table', class_="returns-table")
-    # items = parse.find_all('tbody', id="micexindexcf_shares")
-    items = parse.find_all('td', class_="cc1")
-    for item in items:
-        securities.append(
-            {
-                'title': item.find('span', class_="returns-table-cell-title").get_text(),
-                'price': item.find('div', class_="returns-table-cell-price").get_text(),
-                'return': item.find('span', class_="returns-table-cell-return").get_text()
-            }
-        )
-
-    items = parse.find_all('td', class_="cc8")
-    for item in items:
-        securities.append(
-            {
-                'title': item.find('span', class_="returns-table-cell-title").get_text(),
-                'price': item.find('div', class_="returns-table-cell-price").get_text(),
-                'return': item.find('span', class_="returns-table-cell-return").get_text()
-            }
-        )
+    for i in range(1, 8):
+        items = parse.find_all('td', class_="cc" + f'{i}')
+        for item in items:
+            securities.append(
+                {
+                    'Эмитент:': item.find('span', class_="returns-table-cell-title").get_text(),
+                    'Стоимость:': item.find('div', class_="returns-table-cell-price").get_text(),
+                    'Доходность:': item.find('span', class_="returns-table-cell-return").get_text()
+                }
+            )
 
     return securities
 
 
 def main():
-    data = get_data(get_html(URL))
-    for data in data:
-        print(data)
+    datas = get_data(get_html(URL))
+    print('--------------')
+    for data in datas:
+        for value in data:
+            print(value, data[value])
+        print('--------------')
 
 
 if __name__ == '__main__':
