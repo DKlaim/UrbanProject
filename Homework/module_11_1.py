@@ -1,5 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
+import pandas as pd
+import matplotlib.pyplot as plt
 
 HOST = 'https://www.dohod.ru'
 URL = 'https://www.dohod.ru/ik/analytics/stockmap'
@@ -14,31 +16,56 @@ def get_html(url, params=''):
     return r.text
 
 
-def get_data(html):
+def get_securities(html):
     parse = BeautifulSoup(html, 'html.parser')
     securities = []
 
     for i in range(1, 9):
-        items = parse.find_all('td', class_="cc" + f'{i}')
-        for item in items:
+        products = parse.find_all('td', class_="cc" + f'{i}')
+        for product in products:
             securities.append(
                 {
-                    'Эмитент:': item.find('span', class_="returns-table-cell-title").get_text(),
-                    'Стоимость:': item.find('div', class_="returns-table-cell-price").get_text(),
-                    'Доходность:': item.find('span', class_="returns-table-cell-return").get_text()
+                    'Эмитент:': product.find('span', class_="returns-table-cell-title").get_text(),
+                    'Стоимость:': product.find('div', class_="returns-table-cell-price").get_text(),
+                    'Доходность:': product.find('span', class_="returns-table-cell-return").get_text().rstrip(' %')
                 }
             )
 
     return securities
 
 
+def save_to_csv(dataset, filename):
+    df = pd.DataFrame(dataset)
+    df.to_csv(filename, index=False)
+
+
+def top_securities(filename):
+    table = pd.read_csv(filename)
+    result = table.sort_values(by=['Доходность:'], ascending=False, ignore_index=True)
+    result = result.head(10)
+    return result
+
+
 def main():
-    datas = get_data(get_html(URL))
+    dataset = get_securities(get_html(URL))
+    save_to_csv(dataset, 'securities.csv')
     print('--------------')
-    for data in datas:
+    for data in dataset:
         for value in data:
             print(value, data[value])
         print('--------------')
+
+    print()
+    print('Топ-10 эмитентов по доходности')
+    print(top_securities('securities.csv'))
+
+    table = top_securities('securities.csv')
+    x = table.values[:, 0]
+    y = table.values[:, 2]
+    plt.figure(figsize=(13, 5))
+    plt.title('Топ-10 эмитентов по доходности')
+    plt.bar(x, y)
+    plt.show()
 
 
 if __name__ == '__main__':
