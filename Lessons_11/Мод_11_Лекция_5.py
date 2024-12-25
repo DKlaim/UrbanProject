@@ -1,8 +1,6 @@
 ''' Системный пакет sys '''
 
 import sys
-from platform import version
-from pprint import pprint
 
 # pprint(dir(sys))
 print()
