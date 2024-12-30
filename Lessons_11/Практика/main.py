@@ -28,7 +28,7 @@ def new_photo(name, n=1):
     return image.resize((w // n, h // n))
 
 
-im_1 = new_photo('photo1.jpg')
+im_1 = new_photo('photo.jpg')
 im_2 = new_photo('moon.png', 4)
 im_1.paste(im_2, (253, 12), mask=im_2)
 
