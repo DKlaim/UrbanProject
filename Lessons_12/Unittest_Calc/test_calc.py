@@ -61,7 +61,7 @@ class CalcTest(unittest.TestCase):
         self.assertTrue(True)   # Проверка на Истину
         self.assertFalse(False)   # Проверка на Лож
         # self.assertRaises(1 / 0)   # Проверка на вызов ошибки
-        self.assertAlmostEquals(0.0000001, 0.0000001)   # Сравнение с точностью до 7 знака после точки
+        self.assertAlmostEqual(0.0000001, 0.0000001)   # Сравнение с точностью до 7 знака после точки
         # А также больше/меньше и т.п.
 
 
