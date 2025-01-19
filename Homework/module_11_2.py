@@ -4,10 +4,12 @@ def introspection_info(obj):
     info['type'] = type(obj).__name__
     info['attributes'] = dir(obj)
     info['methods'] = [attr for attr in dir(obj) if callable(getattr(obj, attr))]
-    info['module'] = obj.__module__
+    info['module'] = getattr(obj, "__module__", None)
 
     return info
 
-
 number_info = introspection_info(42)
+print(number_info)
+
+number_info = introspection_info(introspection_info)
 print(number_info)
