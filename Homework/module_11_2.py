@@ -11,5 +11,5 @@ def introspection_info(obj):
 number_info = introspection_info(42)
 print(number_info)
 
-number_info = introspection_info(introspection_info)
-print(number_info)
+any_obj = introspection_info(introspection_info)
+print(any_obj)
