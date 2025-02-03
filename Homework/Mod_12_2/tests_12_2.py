@@ -12,26 +12,21 @@ class TournamentTest(unittest.TestCase):
         self.runner_2 = runner_and_tournament.Runner('Андрей', 9)
         self.runner_3 = runner_and_tournament.Runner('Ник', 3)
 
-    def test_start_1(self):
-        tournament = runner_and_tournament.Tournament(90, self.runner_1, self.runner_3)
+    def run_tournament(self, tournament_name, *runners, ):
+        tournament = runner_and_tournament.Tournament(90, *runners)
         result = {}
         for place, participant in tournament.start().items():
-            result[str(place)] = str(participant)
-        self.all_results['tournament_1'] = result
+            result[place] = str(participant)
+        self.all_results[tournament_name] = result
 
-    def test_start_2(self):
-        tournament = runner_and_tournament.Tournament(90, self.runner_2, self.runner_3)
-        result = {}
-        for place, participant in tournament.start().items():
-            result[str(place)] = str(participant)
-        self.all_results['tournament_2'] = result
+    def test_tournament_1(self):
+        self.run_tournament('tournament_1', self.runner_1, self.runner_3)
 
-    def test_start_3(self):
-        tournament = runner_and_tournament.Tournament(90, self.runner_1, self.runner_2, self.runner_3)
-        result = {}
-        for place, participant in tournament.start().items():
-            result[str(place)] = str(participant)
-        self.all_results['tournament_3'] = result
+    def test_tournament_2(self):
+        self.run_tournament('tournament_2', self.runner_2, self.runner_3)
+
+    def test_tournament_3(self):
+        self.run_tournament('tournament_3', self.runner_1, self.runner_2, self.runner_3)
 
     @classmethod
     def tearDownClass(cls):
