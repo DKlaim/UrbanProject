@@ -19,23 +19,21 @@ class TournamentTest(unittest.TestCase):
             result[place] = str(participant)
         self.all_results[tournament_name] = result
 
+    def check_last_runner(self, tournament_name, expected_last_runner):
+        last_runner = list(self.all_results[tournament_name].values())[-1]
+        self.assertEqual(last_runner, expected_last_runner)
+
     def test_tournament_1(self):
         self.run_tournament('tournament_1', self.runner_1, self.runner_3)
-        last_runner = list(self.all_results['tournament_1'].values())[-1]
-        expected_last_runner = 'Ник'
-        self.assertTrue(last_runner == expected_last_runner)
+        self.check_last_runner('tournament_1', 'Ник')
 
     def test_tournament_2(self):
         self.run_tournament('tournament_2', self.runner_2, self.runner_3)
-        last_runner = list(self.all_results['tournament_2'].values())[-1]
-        expected_last_runner = 'Ник'
-        self.assertTrue(last_runner == expected_last_runner)
+        self.check_last_runner('tournament_2', 'Ник')
 
     def test_tournament_3(self):
         self.run_tournament('tournament_3', self.runner_1, self.runner_2, self.runner_3)
-        last_runner = list(self.all_results['tournament_3'].values())[-1]
-        expected_last_runner = 'Ник'
-        self.assertTrue(last_runner == expected_last_runner)
+        self.check_last_runner('tournament_3', 'Ник')
 
     @classmethod
     def tearDownClass(cls):
