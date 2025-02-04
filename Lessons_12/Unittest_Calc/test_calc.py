@@ -8,23 +8,23 @@ import unittest
 
 
 class CalcTest(unittest.TestCase):
-    def setUp(self):  # метод setUp - функция, которая выполняется перед каждой фикстурой
-        print('UpSetup')
-    # setUp - то что происходит перед каждым кейсом
-
-    @classmethod
-    def setUpClass(cls):  # метод setUpClass - функция, которая выполняется 1 раз в самом начале запуска теста (используется с декоратором @classmethod)
-        print('UpMegaSetup')
-    # setUpClass - то что происходит перед каждым тест-кейсом
-
-    def tearDown(self):  # метод tearDown - функция, которая выполняется после каждой фикстуры
-        print('DownSetup')
-    # tearDown - то что происходит после каждого кейса
-
-    @classmethod
-    def tearDownClass(cls):  # метод tearDownClass - функция, которая выполняется 1 раз в самом конце теста (используется с декоратором @classmethod)
-        print('DownMegaSetup')
-    # tearDownClass - то что происходит после каждого тест-кейса
+    # def setUp(self):  # метод setUp - функция, которая выполняется перед каждой фикстурой
+    #     print('UpSetup')
+    # # setUp - то что происходит перед каждым кейсом
+    #
+    # @classmethod
+    # def setUpClass(cls):  # метод setUpClass - функция, которая выполняется 1 раз в самом начале запуска теста (используется с декоратором @classmethod)
+    #     print('UpMegaSetup')
+    # # setUpClass - то что происходит перед каждым тест-кейсом
+    #
+    # def tearDown(self):  # метод tearDown - функция, которая выполняется после каждой фикстуры
+    #     print('DownSetup')
+    # # tearDown - то что происходит после каждого кейса
+    #
+    # @classmethod
+    # def tearDownClass(cls):  # метод tearDownClass - функция, которая выполняется 1 раз в самом конце теста (используется с декоратором @classmethod)
+    #     print('DownMegaSetup')
+    # # tearDownClass - то что происходит после каждого тест-кейса
 
     def test_add(self):
         """
