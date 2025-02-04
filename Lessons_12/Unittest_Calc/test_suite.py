@@ -1,8 +1,7 @@
-""" Систематизация тестов """
+""" Систематизация тестов + Пропуск тестов """
 
 import unittest
 import test_calc, test_new_calc
-
 
 calcTS = unittest.TestSuite()
 # calcTS.addTest(unittest.makeSuite(test_calc.CalcTest))  # устаревший метод
